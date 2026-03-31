@@ -8,6 +8,7 @@
 
 | Repository | Description |
 |------------|-------------|
+| [omnibase](https://github.com/OmniNode-ai/omnibase) | **Monorepo installer** — one command to clone, build, and run the full stack |
 | [omniclaude](https://github.com/OmniNode-ai/omniclaude) | Claude Code agent plugin — hooks, skills, routing, and agent registry |
 | [omnibase_core](https://github.com/OmniNode-ai/omnibase_core) | Core Pydantic models, contracts, validators, and ONEX 4.0 base types |
 | [omnibase_infra](https://github.com/OmniNode-ai/omnibase_infra) | Infrastructure services: Kafka/Redpanda event bus, PostgreSQL, session management |
@@ -15,17 +16,26 @@
 | [omnimemory](https://github.com/OmniNode-ai/omnimemory) | Memory persistence, semantic retrieval, intent graphs, and embedding storage |
 | [omnibase_spi](https://github.com/OmniNode-ai/omnibase_spi) | Service provider interface protocols for pluggable backends |
 | [omnidash](https://github.com/OmniNode-ai/omnidash) | Real-time observability dashboard for agents, patterns, and code analysis |
+| [omnibase_compat](https://github.com/OmniNode-ai/omnibase_compat) | Shared structural package — enums, wire DTOs, event envelopes |
+| [omninode_infra](https://github.com/OmniNode-ai/omninode_infra) | API service, Kubernetes manifests, and Terraform infrastructure |
+| [omniweb](https://github.com/OmniNode-ai/omniweb) | Landing page and public website |
 | [onex_change_control](https://github.com/OmniNode-ai/onex_change_control) | Drift detection, schema governance, and cross-repo enforcement tooling |
 
 ---
 
-## Getting Started
+## Quick Start
 
-The fastest way to get started is with the **omniclaude** plugin for Claude Code:
+Get the full platform running with one command:
 
-- [omniclaude QUICKSTART.md](https://github.com/OmniNode-ai/omniclaude/blob/main/QUICKSTART.md)
+```bash
+git clone https://github.com/OmniNode-ai/omnibase.git
+cd omnibase
+make install && make setup && make dev
+```
 
-This gets you the full agent routing system, skill library, and ONEX node patterns running locally in minutes.
+See [omnibase](https://github.com/OmniNode-ai/omnibase) for the full getting started guide.
+
+For the Claude Code agent plugin specifically, see [omniclaude QUICKSTART.md](https://github.com/OmniNode-ai/omniclaude/blob/main/QUICKSTART.md).
 
 ---
 
