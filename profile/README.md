@@ -8,7 +8,7 @@
 
 | Repository | Description |
 |------------|-------------|
-| [knowledge-base](https://github.com/OmniNode-ai/knowledge-base) | **System Information - A system we can tie into OmniNode that gives agents context about the system |
+| [knowledge-base](https://github.com/OmniNode-ai/knowledge-base) | **System Information** - A system we can tie into OmniNode that gives agents context about the system |
 | [omnibase](https://github.com/OmniNode-ai/omnibase) | **Monorepo installer** — one command to clone, build, and run the full stack |
 | [omniclaude](https://github.com/OmniNode-ai/omniclaude) | Claude Code agent plugin — hooks, skills, routing, and agent registry |
 | [omnibase_core](https://github.com/OmniNode-ai/omnibase_core) | Core Pydantic models, contracts, validators, and ONEX 4.0 base types |
