@@ -18,6 +18,8 @@
 | [omnibase_spi](https://github.com/OmniNode-ai/omnibase_spi) | Service provider interface protocols for pluggable backends |
 | [omnidash](https://github.com/OmniNode-ai/omnidash) | Real-time observability dashboard for agents, patterns, and code analysis |
 | [omnibase_compat](https://github.com/OmniNode-ai/omnibase_compat) | Shared structural package — enums, wire DTOs, event envelopes |
+| [omnimarket](https://github.com/OmniNode-ai/omnimarket) | Portable ONEX workflow package registry |
+| [omnigemini](https://github.com/OmniNode-ai/omnigemini) | Gemini-native ONEX skill execution runtime — whole-project grounding via Gemini's long context window |
 | omninode_infra (private) | API service, Kubernetes manifests, and Terraform infrastructure |
 | omniweb (private) | Landing page and public website |
 | [onex_change_control](https://github.com/OmniNode-ai/onex_change_control) | Drift detection, schema governance, and cross-repo enforcement tooling |
