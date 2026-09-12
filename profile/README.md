@@ -31,12 +31,10 @@ Generated from [omnibase/repos.yaml](https://github.com/OmniNode-ai/omnibase/blo
 | [knowledge-base](https://github.com/OmniNode-ai/knowledge-base) | Canonical home for OmniNode's external documentation — architecture, guides, reference, runbooks, and provenance |
 | [omnigemini](https://github.com/OmniNode-ai/omnigemini) | Gemini-native ONEX skill execution runtime — whole-project grounding via Gemini's long context window |
 
-**Private repositories** (not cloned by the public installer):
-
-| Repository | Description |
-|------------|-------------|
-| omninode_infra (private) | API service, Kubernetes manifests, and Terraform infrastructure |
-| omniweb (private) | Public landing page and waitlist site |
+Some components of the platform — the hosted API service, its deployment
+infrastructure, and the marketing site — are developed in repositories that
+are not part of this open-source distribution and are not cloned by the
+public installer.
 
 ---
 
