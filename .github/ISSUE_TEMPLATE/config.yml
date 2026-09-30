@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: 2025 OmniNode.ai Inc.
+# SPDX-License-Identifier: MIT
+blank_issues_enabled: true
+contact_links:
+  - name: Quickstart and troubleshooting
+    url: https://github.com/OmniNode-ai/knowledge-base/blob/main/guides/onex-plugin-quickstart.md
+    about: The first-run guide, with what you should see after each step and a troubleshooting table.
+  - name: Security issue
+    url: mailto:contact@omninode.ai
+    about: Report security problems by email, not in a public issue.

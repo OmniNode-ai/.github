@@ -1,0 +1,61 @@
+# SPDX-FileCopyrightText: 2025 OmniNode.ai Inc.
+# SPDX-License-Identifier: MIT
+#
+# Organisation default bug-report form (OMN-20122). Applies to every
+# OmniNode-ai repository that does not define its own templates.
+name: Bug report
+description: Something did not work as documented
+title: "[bug] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. The quickstart's troubleshooting table covers the common first-run problems:
+        https://github.com/OmniNode-ai/knowledge-base/blob/main/guides/onex-plugin-quickstart.md
+        Security issues go to contact@omninode.ai, not here.
+  - type: dropdown
+    id: path
+    attributes:
+      label: Which path were you following?
+      options:
+        - OmniClaude Quickstart (uv tool install / Claude Code plugin)
+        - omnibase installer (make install, self-hosted)
+        - Something else (say what below)
+    validations:
+      required: true
+  - type: textarea
+    id: ran
+    attributes:
+      label: What you ran
+      description: The exact command or step, and the document you were following.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happened instead
+      description: Paste the output. Remove any API key or password before pasting.
+      render: shell
+    validations:
+      required: true
+  - type: input
+    id: platform
+    attributes:
+      label: Platform
+      description: Operating system, version and CPU architecture, for example `macOS 14.7, Intel x86_64` or `Ubuntu 24.04, arm64`.
+    validations:
+      required: true
+  - type: textarea
+    id: versions
+    attributes:
+      label: Versions
+      description: Output of `onex --version`, `uv --version` and `python3 --version` if you have them.
+      render: shell
