@@ -12,7 +12,7 @@ You can hand a task from Claude Code, or from a terminal, to a model you run you
 
 The guide that sets this up takes about 15 minutes and needs no clone and no Docker. It says what you should see after each step and has a troubleshooting table:
 
-**[OmniClaude Quickstart](https://github.com/OmniNode-ai/knowledge-base/blob/main/guides/onex-plugin-quickstart.md)**
+**[OmniClaude Quickstart](https://github.com/OmniNode-ai/knowledge_base/blob/main/guides/onex-plugin-quickstart.md)**
 
 The install is one command. It needs Python 3.12 or newer and [uv](https://docs.astral.sh/uv/):
 
@@ -36,35 +36,60 @@ Nodes do not call each other directly. They publish and consume events on a bus,
 
 Locally, the bus runs in memory and state is kept in SQLite, so you need no broker, database server or container runtime to try it. Moving to a self-hosted stack swaps those two adapters; it does not change your nodes.
 
-To read further, start with the [repository map and runtime concepts](https://github.com/OmniNode-ai/knowledge-base/blob/main/architecture/repository-map-and-runtime-concepts.md) and [getting started locally](https://github.com/OmniNode-ai/knowledge-base/blob/main/guides/getting-started-local.md).
+To read further, start with the [repository map and runtime concepts](https://github.com/OmniNode-ai/knowledge_base/blob/main/architecture/repository-map-and-runtime-concepts.md) and [getting started locally](https://github.com/OmniNode-ai/knowledge_base/blob/main/guides/getting-started-local.md).
+
+---
+
+## How the pieces fit
+
+This is how a developer's work flows through the platform today.
+
+```mermaid
+flowchart TB
+    kb["Documentation<br/>(knowledge_base)"]
+    dev["Claude Code with the onex plugin<br/>(omniclaude)"]
+    market["Delegation and workflow nodes<br/>(omnimarket)"]
+    ai["Intelligence and memory nodes<br/>(omniintelligence, omnimemory)"]
+    infra["Runtime and event bus<br/>(omnibase_infra)"]
+    dash["Dashboard<br/>(omnidash)"]
+    models["Models: your own provider keys<br/>or models you run locally"]
+    spi["Protocols<br/>(omnibase_spi)"]
+    core["Kernel and contracts<br/>(omnibase_core)"]
+    compat["Shared wire types<br/>(omnibase_compat)"]
+
+    kb -.->|documents every box below| dev
+    dev -->|calls delegation| market
+    market -->|runs as nodes on| infra
+    ai -->|plugs in as nodes on| infra
+    market -->|sends the task to| models
+    infra -->|event stream, as projections| dash
+    infra -->|implements| spi
+    spi -->|builds on| core
+    core -->|builds on| compat
+```
+
+Every capability in the middle of the diagram is a contract, a node and a handler: the contract is a YAML file that declares what the node does, the node is a thin shell of one of four kinds (effect, compute, reducer or orchestrator), and the handler holds the logic. Nodes talk to each other by publishing and consuming events on the bus.
 
 ---
 
 ## Repositories
 
-The platform repositories, in dependency order from the bottom:
+Start with `knowledge_base`. The rest are listed in the order a newcomer is likely to need them: what you install and use today first, then the pieces underneath, then the supporting repositories.
 
 | Repository | What it is for |
 |------------|----------------|
-| [omnibase_compat](https://github.com/OmniNode-ai/omnibase_compat) | Shared enums, wire types and event envelopes, with no OmniNode dependencies |
-| [omnibase_core](https://github.com/OmniNode-ai/omnibase_core) | The platform kernel: node execution, contracts, models, validators and the `onex` command |
-| [omnibase_spi](https://github.com/OmniNode-ai/omnibase_spi) | Protocol definitions that the implementation repositories satisfy |
-| [omnibase_infra](https://github.com/OmniNode-ai/omnibase_infra) | The runtime and infrastructure implementations: event transport, handler loading, configuration |
-| [omnimarket](https://github.com/OmniNode-ai/omnimarket) | A registry of portable, contract-backed workflow nodes, including the node that performs delegation |
+| [knowledge_base](https://github.com/OmniNode-ai/knowledge_base) | Start here. The documentation: quickstart and getting-started guides, architecture, decision records and reference |
 | [omniclaude](https://github.com/OmniNode-ai/omniclaude) | The Claude Code plugin marketplace; the `onex` plugin adds the `/onex:delegate` skill |
+| [omnibase_core](https://github.com/OmniNode-ai/omnibase_core) | The platform kernel: node execution, contracts, models, validators and the `onex` command |
+| [omnimarket](https://github.com/OmniNode-ai/omnimarket) | A registry of portable, contract-backed workflow nodes, including the node that performs delegation |
+| [omnibase_infra](https://github.com/OmniNode-ai/omnibase_infra) | The runtime and infrastructure implementations: event transport, handler loading, configuration |
+| [omnibase](https://github.com/OmniNode-ai/omnibase) | The installer that clones the platform repositories and prepares a local or Docker-based stack, for self-hosting and contributors |
 | [omnidash](https://github.com/OmniNode-ai/omnidash) | The composable dashboard, built with Vite and React, that renders projections |
+| [omnibase_spi](https://github.com/OmniNode-ai/omnibase_spi) | Protocol definitions that the implementation repositories satisfy |
+| [omnibase_compat](https://github.com/OmniNode-ai/omnibase_compat) | Shared enums, wire types and event envelopes, with no OmniNode dependencies |
 | [omniintelligence](https://github.com/OmniNode-ai/omniintelligence) | Pattern learning, code analysis and evaluation as ONEX nodes |
 | [omnimemory](https://github.com/OmniNode-ai/omnimemory) | Memory storage, recall and semantic retrieval as ONEX nodes |
 | [onex_change_control](https://github.com/OmniNode-ai/onex_change_control) | Schemas and checks for governance and drift detection |
-
-Also public:
-
-| Repository | What it is for |
-|------------|----------------|
-| [omnibase](https://github.com/OmniNode-ai/omnibase) | The installer that clones the platform repositories and prepares a local or Docker-based stack, for self-hosting and contributors |
-| [knowledge-base](https://github.com/OmniNode-ai/knowledge-base) | The documentation: guides, architecture, decision records and reference |
-| [omniui](https://github.com/OmniNode-ai/omniui) | A shared web component library that draws charts and tables from widget contracts |
-| [omnigemini](https://github.com/OmniNode-ai/omnigemini) | An execution runtime that runs ONEX skills on Gemini |
 
 ---
 
@@ -78,7 +103,7 @@ cd omnibase
 make install
 ```
 
-Then follow the [getting started guide](https://github.com/OmniNode-ai/omnibase/blob/main/docs/GETTING_STARTED.md). For running the full stack on your own infrastructure, see [self-hosting the full stack](https://github.com/OmniNode-ai/knowledge-base/blob/main/guides/getting-started-self-hosted.md).
+Then follow the [getting started guide](https://github.com/OmniNode-ai/omnibase/blob/main/docs/GETTING_STARTED.md). For running the full stack on your own infrastructure, see [self-hosting the full stack](https://github.com/OmniNode-ai/knowledge_base/blob/main/guides/getting-started-self-hosted.md).
 
 ---
 
