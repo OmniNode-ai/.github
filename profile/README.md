@@ -40,6 +40,38 @@ To read further, start with the [repository map and runtime concepts](https://gi
 
 ---
 
+## How the pieces fit
+
+This is how a developer's work flows through the platform today.
+
+```mermaid
+flowchart TB
+    kb["Documentation<br/>(knowledge_base)"]
+    dev["Claude Code with the onex plugin<br/>(omniclaude)"]
+    market["Delegation and workflow nodes<br/>(omnimarket)"]
+    ai["Intelligence and memory nodes<br/>(omniintelligence, omnimemory)"]
+    infra["Runtime and event bus<br/>(omnibase_infra)"]
+    dash["Dashboard<br/>(omnidash)"]
+    models["Models: your own provider keys<br/>or models you run locally"]
+    spi["Protocols<br/>(omnibase_spi)"]
+    core["Kernel and contracts<br/>(omnibase_core)"]
+    compat["Shared wire types<br/>(omnibase_compat)"]
+
+    kb -.->|documents every box below| dev
+    dev -->|calls delegation| market
+    market -->|runs as nodes on| infra
+    ai -->|plugs in as nodes on| infra
+    market -->|sends the task to| models
+    infra -->|event stream, as projections| dash
+    infra -->|implements| spi
+    spi -->|builds on| core
+    core -->|builds on| compat
+```
+
+Every capability in the middle of the diagram is a contract, a node and a handler: the contract is a YAML file that declares what the node does, the node is a thin shell of one of four kinds (effect, compute, reducer or orchestrator), and the handler holds the logic. Nodes talk to each other by publishing and consuming events on the bus.
+
+---
+
 ## Repositories
 
 Start with `knowledge_base`. The rest are listed in the order a newcomer is likely to need them: what you install and use today first, then the pieces underneath, then the supporting repositories.
