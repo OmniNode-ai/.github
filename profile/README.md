@@ -89,7 +89,6 @@ Start with `knowledge_base`. The rest are listed in the order a newcomer is like
 | [omnibase_compat](https://github.com/OmniNode-ai/omnibase_compat) | Shared enums, wire types and event envelopes, with no OmniNode dependencies |
 | [omniintelligence](https://github.com/OmniNode-ai/omniintelligence) | Pattern learning, code analysis and evaluation as ONEX nodes |
 | [omnimemory](https://github.com/OmniNode-ai/omnimemory) | Memory storage, recall and semantic retrieval as ONEX nodes |
-| [onex_change_control](https://github.com/OmniNode-ai/onex_change_control) | Schemas and checks for governance and drift detection |
 
 ---
 
